@@ -76,9 +76,16 @@
         .section h2 {
             color: #ff1e1e;
             margin-bottom: 15px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             border-bottom: 1px solid #2a2a2a;
             padding-bottom: 8px;
+        }
+
+        .device-title {
+            color: #64b5f6;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 15px 0 10px;
         }
 
         .steps-list {
@@ -88,7 +95,7 @@
         }
 
         .steps-list li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             position: relative;
             padding-right: 25px;
         }
@@ -232,17 +239,25 @@
         <img src="logo.png" alt="NetChecker Logo" class="app-logo">
         <h1 class="app-title">NetChecker</h1>
     </div>
-    <p class="subtitle">حل مشكلة مشاركة الإنترنت والبروكسي عبر الشبكة المحلية LAN</p>
+    <p class="subtitle">طريقة مشاركة انترنت الكونفينق مع اجهزة اخرى بستعمال NetChecker</p>
 
     <!-- طريقة الاستعمال -->
     <div class="section">
-        <h2>طريقة الاستعمال</h2>
+        <h2>شرح طريقة مشاركة انترنت الكونفينق مع اجهزة اخرى بستعمال NetChecker</h2>
+        
+        <div class="device-title">📱 الهاتف الأول:</div>
         <ul class="steps-list">
-            <li>قم بتشغيل نقطة الهوتسبوت (Hotspot) أو الاتصال بنفس شبكة الـ Wi-Fi على الهاتف الأول.</li>
-            <li>افتح تطبيق NetChecker واضغط على زر <b>"تشغيل بروكسي HTTP على البورت 8080"</b>.</li>
-            <li>سيظهر لك عنوان الـ IP الخاص بجهازك (مثل 192.168.43.1) والبورت 8080.</li>
-            <li>في الهاتف الثاني، افتح إعدادات الـ Wi-Fi وانتقل لإعدادات البروكسي (Proxy) واختر <b>يدوي (Manual)</b>.</li>
-            <li>أدخل عنوان الـ Host IP والبورت 8080 الموضحين في الهاتف الأول، واستمتع بالإنترنت على الجهاز الثاني.</li>
+            <li>فعل allow access from lan من داخل دارك تونل.</li>
+            <li>حمل وثبت تطبيق NetChecker من قناتنا على تلقرام.</li>
+            <li>قم بمشاركة الاتصال (hotspot).</li>
+            <li>من داخل تطبيق NetChecker اضغط على تشغيل البروكسي.</li>
+            <li>سوف تظهر لك معلومات host ip و port.</li>
+        </ul>
+
+        <div class="device-title" style="color: #4caf50;">📱 الجهاز الثاني:</div>
+        <ul class="steps-list">
+            <li>تدخل إعدادات الوي فاي وتتصل بشبكة.</li>
+            <li>تقوم بإضافة بروكسي للشبكة وتحط host ip و port الي ظهرولك في تطبيق.</li>
         </ul>
     </div>
 
@@ -280,7 +295,7 @@
     </div>
 
     <footer>
-        <p>&copy; NetChecker - All Rights Reserved</p>
+        <p>&copy; NetChecker - All Rights Reserved - by Litche</p>
     </footer>
 </div>
 
@@ -304,7 +319,6 @@
             .then(response => response.json())
             .then(data => {
                 container.innerHTML = "";
-                // اقتطاع 15 قناة كحد أقصى
                 const channels = data.slice(0, 15);
 
                 channels.forEach(ch => {
