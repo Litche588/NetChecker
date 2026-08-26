@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NetChecker</title>
+
+    <!-- أيقونة الموقع (Favicon) -->
+    <link rel="icon" type="image/png" href="logo.png">
+
     <style>
         * {
             box-sizing: border-box;
@@ -28,12 +32,28 @@
             text-align: center;
         }
 
+        /* رأس الصفحة والأيقونة */
+        .header-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 10px;
+        }
+
+        .app-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            box-shadow: 0 0 15px rgba(255, 30, 30, 0.4);
+            object-fit: cover;
+        }
+
         /* عنوان التطبيق */
         h1.app-title {
             color: #ff1e1e;
             font-size: 3.5rem;
             font-weight: 800;
-            margin: 20px 0 10px;
             text-shadow: 0 0 15px rgba(255, 30, 30, 0.4);
         }
 
@@ -80,24 +100,21 @@
             right: 0;
         }
 
-        /* حاوية الفيديو */
+        /* مشغل الفيديو المحلي */
         .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
+            width: 100%;
             border-radius: 10px;
+            overflow: hidden;
             border: 1px solid #333;
             margin-top: 10px;
+            background-color: #000;
         }
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .video-container video {
             width: 100%;
-            height: 100%;
-            border: 0;
+            max-height: 450px;
+            display: block;
+            outline: none;
         }
 
         /* الأزرار الرئيسية */
@@ -114,6 +131,7 @@
             cursor: pointer;
             border: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
 
         .btn-green {
@@ -190,6 +208,7 @@
             border: 1px solid #333;
             font-size: 0.95rem;
             transition: 0.3s;
+            text-align: center;
         }
 
         .social-btn:hover {
@@ -208,8 +227,11 @@
 <body>
 
 <div class="container">
-    <!-- اسم التطبيق -->
-    <h1 class="app-title">NetChecker</h1>
+    <!-- الشعار واسم التطبيق -->
+    <div class="header-brand">
+        <img src="logo.png" alt="NetChecker Logo" class="app-logo">
+        <h1 class="app-title">NetChecker</h1>
+    </div>
     <p class="subtitle">حل مشكلة مشاركة الإنترنت والبروكسي عبر الشبكة المحلية LAN</p>
 
     <!-- طريقة الاستعمال -->
@@ -224,17 +246,19 @@
         </ul>
     </div>
 
-    <!-- فيديو الشرح -->
+    <!-- فيديو الشرح (فيديو محلي) -->
     <div class="section">
         <h2>فيديو شرح الاستعمال</h2>
         <div class="video-container">
-            <!-- استبدل LINK_HERE برابط فيديو يوتيوب الخاص بك -->
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="NetChecker Tutorial" allowfullscreen></iframe>
+            <video controls preload="metadata">
+                <source src="video.mp4" type="video/mp4">
+                متصفحك لا يدعم تشغيل هذا الفيديو.
+            </video>
         </div>
     </div>
 
-    <!-- زر التحميل -->
-    <a href="https://github.com/Litche588/NetChecker/releases" class="btn btn-green" target="_blank">📥 تحميل التطبيق (APK)</a>
+    <!-- زر تحميل التطبيق مباشرة -->
+    <a href="NetChecker.apk" class="btn btn-green" download="NetChecker.apk">📥 تحميل التطبيق (APK)</a>
 
     <!-- زر القنوات والمجتمع -->
     <button class="btn btn-blue" onclick="toggleChannels()">🌐 قنوات التلجرام والمجتمع 🌐</button>
