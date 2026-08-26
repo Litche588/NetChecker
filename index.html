@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetChecker</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* عنوان التطبيق */
+        h1.app-title {
+            color: #ff1e1e;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 20px 0 10px;
+            text-shadow: 0 0 15px rgba(255, 30, 30, 0.4);
+        }
+
+        p.subtitle {
+            color: #aaaaaa;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* قسم شرح الاستعمال */
+        .section {
+            background-color: #161616;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: right;
+        }
+
+        .section h2 {
+            color: #ff1e1e;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 8px;
+        }
+
+        .steps-list {
+            list-style: none;
+            line-height: 1.8;
+            color: #dddddd;
+        }
+
+        .steps-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .steps-list li::before {
+            content: "✦";
+            color: #ff1e1e;
+            position: absolute;
+            right: 0;
+        }
+
+        /* حاوية الفيديو */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid #333;
+            margin-top: 10px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* الأزرار الرئيسية */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            margin: 12px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-green {
+            background-color: #2e7d32;
+            color: #ffffff;
+        }
+
+        .btn-green:hover {
+            background-color: #388e3c;
+            box-shadow: 0 0 15px rgba(56, 142, 60, 0.4);
+        }
+
+        .btn-blue {
+            background-color: #1565c0;
+            color: #ffffff;
+        }
+
+        .btn-blue:hover {
+            background-color: #1e88e5;
+            box-shadow: 0 0 15px rgba(30, 136, 229, 0.4);
+        }
+
+        /* واجهة القنوات */
+        .channels-modal {
+            display: none;
+            margin-top: 20px;
+            background-color: #121212;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .channel-card {
+            background-color: #1e1e1e;
+            color: #fff;
+            padding: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 1px solid #333;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+        }
+
+        .channel-card:hover {
+            border-color: #1e88e5;
+            background-color: #252525;
+            color: #64b5f6;
+        }
+
+        /* أزرار الروابط الاجتماعية */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            background-color: #1a1a1a;
+            color: #cccccc;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 1px solid #333;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .social-btn:hover {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border-color: #ff1e1e;
+        }
+
+        footer {
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- اسم التطبيق -->
+    <h1 class="app-title">NetChecker</h1>
+    <p class="subtitle">حل مشكلة مشاركة الإنترنت والبروكسي عبر الشبكة المحلية LAN</p>
+
+    <!-- طريقة الاستعمال -->
+    <div class="section">
+        <h2>طريقة الاستعمال</h2>
+        <ul class="steps-list">
+            <li>قم بتشغيل نقطة الهوتسبوت (Hotspot) أو الاتصال بنفس شبكة الـ Wi-Fi على الهاتف الأول.</li>
+            <li>افتح تطبيق NetChecker واضغط على زر <b>"تشغيل بروكسي HTTP على البورت 8080"</b>.</li>
+            <li>سيظهر لك عنوان الـ IP الخاص بجهازك (مثل 192.168.43.1) والبورت 8080.</li>
+            <li>في الهاتف الثاني، افتح إعدادات الـ Wi-Fi وانتقل لإعدادات البروكسي (Proxy) واختر <b>يدوي (Manual)</b>.</li>
+            <li>أدخل عنوان الـ Host IP والبورت 8080 الموضحين في الهاتف الأول، واستمتع بالإنترنت على الجهاز الثاني.</li>
+        </ul>
+    </div>
+
+    <!-- فيديو الشرح -->
+    <div class="section">
+        <h2>فيديو شرح الاستعمال</h2>
+        <div class="video-container">
+            <!-- استبدل LINK_HERE برابط فيديو يوتيوب الخاص بك -->
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="NetChecker Tutorial" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- زر التحميل -->
+    <a href="https://github.com/Litche588/NetChecker/releases" class="btn btn-green" target="_blank">📥 تحميل التطبيق (APK)</a>
+
+    <!-- زر القنوات والمجتمع -->
+    <button class="btn btn-blue" onclick="toggleChannels()">🌐 قنوات التلجرام والمجتمع 🌐</button>
+
+    <!-- واجهة القنوات (تظهر عند الضغط) -->
+    <div id="channelsModal" class="channels-modal">
+        <h3 style="color: #64b5f6; margin-bottom: 10px;">قنوات المجتمع المعتمدة (15 قناة)</h3>
+        <div id="channelsContainer" class="channels-grid">
+            <p style="color: #aaa;">جاري جلب القنوات...</p>
+        </div>
+    </div>
+
+    <!-- شبكة روابط التواصل والدعم -->
+    <div class="social-grid">
+        <a href="https://t.me/L1tche" class="social-btn" target="_blank">💬 Litche Telegram</a>
+        <a href="https://github.com/Litche588" class="social-btn" target="_blank">🐙 GitHub</a>
+        <a href="https://t.me/DZCONFI" class="social-btn" target="_blank">📢 DZ-CONFIG</a>
+        <a href="https://t.me/DZTEAMDEV" class="social-btn" target="_blank">🛠️ DZ-TEAM-DEV</a>
+    </div>
+
+    <footer>
+        <p>&copy; NetChecker - All Rights Reserved</p>
+    </footer>
+</div>
+
+<script>
+    const GITHUB_JSON_URL = "https://raw.githubusercontent.com/Litche588/NetChecker/main/channels.json";
+
+    function toggleChannels() {
+        const modal = document.getElementById("channelsModal");
+        if (modal.style.display === "none" || modal.style.display === "") {
+            modal.style.display = "block";
+            loadChannels();
+        } else {
+            modal.style.display = "none";
+        }
+    }
+
+    function loadChannels() {
+        const container = document.getElementById("channelsContainer");
+        
+        fetch(GITHUB_JSON_URL)
+            .then(response => response.json())
+            .then(data => {
+                container.innerHTML = "";
+                // اقتطاع 15 قناة كحد أقصى
+                const channels = data.slice(0, 15);
+
+                channels.forEach(ch => {
+                    const a = document.createElement("a");
+                    a.className = "channel-card";
+                    a.href = ch.url;
+                    a.target = "_blank";
+                    a.innerText = ch.name;
+                    container.appendChild(a);
+                });
+            })
+            .catch(error => {
+                container.innerHTML = "<p style='color: #ff5252;'>فشل جلب القنوات. تأكد من إعداد ملف channels.json بشكل صحيح.</p>";
+            });
+    }
+</script>
+
+</body>
+</html>
